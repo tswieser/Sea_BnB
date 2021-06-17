@@ -8,9 +8,11 @@ const { User } = require('../../db/models');
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 
-// router.post('/test', function (req, res) {
-//     res.json({ requestBody: req.body });
-// });
+
+
+router.post('/test', function (req, res) {
+    res.json({ requestBody: req.body });
+});
 
 // // GET /api/set-token-cookie
 // // http://localhost:5000/api/set-token-cookie
