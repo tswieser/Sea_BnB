@@ -40,6 +40,22 @@ router.delete(
 );
 
 
+// Restore session user
+// prints a json object of the current logged in user with the key of user
+router.get(
+    '/',
+    restoreUser,
+    (req, res) => {
+        const { user } = req;
+        if (user) {
+            return res.json({
+                user: user.toSafeObject()
+            });
+        } else return res.json({});
+    }
+);
+
+
 
 
 module.exports = router;
