@@ -9,18 +9,21 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       start_date: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       end_date: {
+        allowNull: false,
         type: Sequelize.DATE
       },
-      price: {
-        type: Sequelize.DECIMAL
-      },
       user_id: {
+        allowNull: false,
+        references: { model: "Users" },
         type: Sequelize.INTEGER
       },
       dock_id: {
+        allowNull: false,
+        references: { model: "Docks" },
         type: Sequelize.INTEGER
       },
       createdAt: {

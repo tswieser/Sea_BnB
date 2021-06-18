@@ -9,9 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       dock_id: {
+        allowNull: false,
+        references: { model: "Docks" },
         type: Sequelize.INTEGER
       },
       url: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

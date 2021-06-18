@@ -9,15 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       rating: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       review: {
         type: Sequelize.TEXT
       },
       user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: "Users" },
+        allowNull: false
       },
       dock_id: {
+        allowNull: false,
+        references: { model: "Docks" },
         type: Sequelize.INTEGER
       },
       createdAt: {

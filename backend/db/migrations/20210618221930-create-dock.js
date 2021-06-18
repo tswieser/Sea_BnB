@@ -26,7 +26,7 @@ module.exports = {
       },
       price: {
         allowNull: false,
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10, 2)
       },
       lat: {
         type: Sequelize.DECIMAL
@@ -36,6 +36,7 @@ module.exports = {
       },
       user_id: {
         allowNull: false,
+        references: { model: "Users" },
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -52,5 +53,3 @@ module.exports = {
     return queryInterface.dropTable('Docks');
   }
 };
-
-// npx sequelize model:generate --name Image --attributes dock_id:integer,url:string
