@@ -9,7 +9,18 @@ router.get('/', asyncHandler(async (req, res) => {
         include: [User, Image, Review]
     });
     res.json(docks)
-    console.log(docks)
+    // console.log(docks)
+}))
+
+
+router.get('/:id', asyncHandler(async (req, res) => {
+    const dock = await Dock.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [User, Image, Review]
+    });
+    res.json(dock)
 }))
 
 module.exports = router

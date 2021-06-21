@@ -5,12 +5,16 @@ import { getDocks } from '../../store/dock';
 import './DocksPage.css'
 
 function avgRating(numArr) {
-    let avg = 0;
-    for (let i = 0; i < numArr.length; i++) {
-        let review = numArr[i];
-        avg += review.rating;
+    if (numArr.length > 0) {
+        let avg = 0;
+        for (let i = 0; i < numArr.length; i++) {
+            let review = numArr[i];
+            avg += review.rating;
+        }
+        return avg / numArr.length
+    } else {
+        return ('No Reviews')
     }
-    return avg / numArr.length
 }
 
 const DockPage = () => {
@@ -25,10 +29,10 @@ const DockPage = () => {
     return (
         <div className="docks_container">
             {docks.map((dock) => (
-                <div>
+                <div className='dock_listings'>
 
-                    <Link key={dock.id} to={`api/docks/${dock.id}`}>
-                        <h2>{dock.dock_name}</h2>
+                    <Link className="dock_title" key={dock.id} to={`api/docks/${dock.id}`}>
+                        <h2 className="dock_title">{dock.dock_name}</h2>
                     </Link>
 
                     <img
@@ -39,7 +43,7 @@ const DockPage = () => {
                         <div className="dock_address">{dock.address}</div>
                         <div className="dock_city">{dock.city}</div>
                         <div className="dock_state">{dock.state}</div>
-                        <div className="dock_price">{dock.price}</div>
+                        <div className="dock_price">${dock.price} /Night</div>
                         <div className="dock_rating">{avgRating(dock.Reviews)}  <i className="fas fa-star"></i></div>
 
                     </div>
