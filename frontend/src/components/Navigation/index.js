@@ -26,7 +26,7 @@ function Navigation({ isLoaded }) {
   return (
     <ul>
       <li className="nav_bar" >
-        <NavLink exact to="/" ><i class="fas fa-anchor fa-2x"></i></NavLink>
+        <NavLink exact to="/" ><i className="fas fa-anchor fa-2x"></i></NavLink>
         {isLoaded && sessionLinks}
       </li>
     </ul>

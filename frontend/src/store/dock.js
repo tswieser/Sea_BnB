@@ -10,8 +10,9 @@ const loadDocks = (docks) => ({
 
 //Define a Thunk Creator function
 export const getDocks = () => async (dispatch) => {
-    const response = await fetch('api/docks');
+    const response = await fetch('/api/docks');
     const docks = await response.json();
+    console.log(docks)
     dispatch(loadDocks(docks))
 }
 
@@ -24,7 +25,7 @@ const docksReducer = (state = initialState, action) => {
         case LOAD_DOCKS:
             const allDocks = {}
             action.docks.forEach((dock) => {
-                allDocks[docks.id] = dock
+                allDocks[dock.id] = dock
             });
             return {
                 ...state,

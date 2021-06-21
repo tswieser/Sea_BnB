@@ -10,11 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     lng: DataTypes.DECIMAL,
     user_id: DataTypes.INTEGER
   }, {});
-  Dock.associate = function(models) {
+  Dock.associate = function (models) {
     // associations can be defined here
-    Dock.belongsTo(models.User, {foreignKey: "user_id"});
-    Dock.hasMany(models.Image, {foreignKey: "dock_id"})
-    Dock.hasMany(models.Reservation, {foreignKey: "dock_id"})
+    Dock.belongsTo(models.User, { foreignKey: "user_id" });
+    Dock.hasMany(models.Image, { foreignKey: "dock_id" })
+    Dock.hasMany(models.Reservation, { foreignKey: "dock_id" })
+    Dock.hasMany(models.Review, { foreignKey: "dock_id" })
 
   };
   return Dock;
