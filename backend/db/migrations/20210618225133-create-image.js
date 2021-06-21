@@ -31,3 +31,4 @@ module.exports = {
     return queryInterface.dropTable('Images');
   }
 };
+
