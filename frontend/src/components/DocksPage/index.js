@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getDocks } from '../../store/dock';
 import './DocksPage.css'
 
-function avgRating(numArr) {
+export function avgRating(numArr) {
     if (numArr.length > 0) {
         let avg = 0;
         for (let i = 0; i < numArr.length; i++) {
@@ -31,7 +31,7 @@ const DockPage = () => {
             {docks.map((dock) => (
                 <div className='dock_listings'>
 
-                    <Link className="dock_title" key={dock.id} to={`api/docks/${dock.id}`}>
+                    <Link className="dock_title" key={dock.id} to={`/api/docks/${dock.id}`}>
                         <h2 className="dock_title">{dock.dock_name}</h2>
                     </Link>
 
@@ -43,11 +43,15 @@ const DockPage = () => {
                         <div className="dock_address">{dock.address}</div>
                         <div className="dock_city">{dock.city}</div>
                         <div className="dock_state">{dock.state}</div>
-                        <div className="dock_price">${dock.price} /Night</div>
                         <div className="dock_rating">{avgRating(dock.Reviews)}  <i className="fas fa-star"></i></div>
 
-                    </div>
 
+                    </div>
+                    <div className="dock_price">${dock.price} /Night
+                        <Link to={`/api/docks/${dock.id}`}>
+                            <button className="reserve_btn">Reserve Now</button>
+                        </Link>
+                    </div>
                 </div>
 
             ))}

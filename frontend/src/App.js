@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import DockPage from "./components/DocksPage";
+import ReservationPage from './components/ReservationsPage'
 
 
 function App() {
@@ -19,8 +20,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/api/docks">
+          <Route exact path="/api/docks">
           <DockPage />
+          </Route>
+          <Route exact path="/api/docks/:dockId">
+          <ReservationPage />
           </Route>
         </Switch>
       )}
