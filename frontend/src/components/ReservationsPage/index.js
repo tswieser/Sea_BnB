@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getSingularDock, getDocks } from '../../store/dock';
+import { getSingularDock, getDocks, AddReservation } from '../../store/dock';
 import { avgRating } from '../DocksPage'
 import './ReservationPage.css'
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
+
 
 
 
@@ -45,7 +46,7 @@ const ReservationPage = () => {
             dock_id,
             user_id
         }
-
+        dispatch(AddReservation(reservation))
 
     }
 
@@ -89,7 +90,7 @@ const ReservationPage = () => {
                         // selected={date}
                         onChange={(date) => setCheckOut(date)}
                     />
-                    <button type="submit" className="submit_btn">Book Dock</button>
+                    <button type="submit" className="submit_btn" onClick={handleSubmit}>Book Dock</button>
                 </div>
 
             </div >)}

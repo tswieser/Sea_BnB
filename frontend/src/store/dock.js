@@ -1,18 +1,29 @@
+import { csrfFetch } from './csrf';
+
 //ACTION TYPE CONSTANT
 const LOAD_DOCKS = 'docks/LOAD_DOCKS'
 
 const FIND_DOCK = 'dock/FIND_DOCK'
 
+const ADD_RESERVATION = 'dock/ADD_RESERVATION'
+
 //Action creator
 const loadDocks = (docks) => ({
     type: LOAD_DOCKS,
     docks,
-})
+});
 
 const findDock = (dock) => ({
     type: FIND_DOCK,
     dock,
-})
+});
+
+const postReservation = (reservation) => ({
+    type: ADD_RESERVATION,
+    reservation,
+});
+
+
 
 //Define a Thunk Creator function
 export const getDocks = () => async (dispatch) => {
@@ -24,27 +35,29 @@ export const getDocks = () => async (dispatch) => {
 
 
 export const getSingularDock = (id) => async dispatch => {
-    const response = await fetch(`/api/docks/${id}`);
+    const response = await csrfFetch(`/api/docks/${id}`);
     const dock = await response.json();
 
     dispatch(findDock(dock))
 
 }
 
+export const AddReservation = (reservation) => async dispatch => {
+    const response = await fetch('/api/reservation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reservation)
+    });
+    if (response.ok) {
+        const details = await response.json();
+        dispatch(postReservation(details));
+        return details;
+    }
+
+}
+
 //Define initialState
 const initialState = {}
-
-
-// const sortList = (list) => {
-//     return list.sort((dockA, dockB) => {
-//         return dockA.no - dockB.no;
-//     }).map((dock) => dock.id);
-// };
-
-
-
-
-
 
 //create reducer function
 const docksReducer = (state = initialState, action) => {
@@ -58,33 +71,8 @@ const docksReducer = (state = initialState, action) => {
                 ...state,
                 ...allDocks
             };
-
-        // case FIND_DOCK:
-        //     if (!state[action.dock.id]) {
-        //         const newState = {
-        //             ...state,
-        //             [action.dock.id]: action.dock
-        //         };
-        //         console.log('=============>', newState)
-        //         // const dockList = newState.dock.map((id) => newState[id])
-        //         // dockList.push(action.dock)
-        //         // newState.dock = sortList(dockList);
-        //         // return newState
-        //     }
-
-        //     return {
-        //         ...state,
-        //         [action.dock.id]: {
-        //             ...state[action.dock.id],
-        //             ...action.dock
-        //         }
-        //     }
         case FIND_DOCK:
             let dock = action.dock
-            // const singleDock = {}
-            // action.docks.forEach((dock) => {
-            //     singleDock[dock.id] = dock
-            // })
             return {
                 ...state,
                 [action.dock.id]: {
@@ -92,6 +80,13 @@ const docksReducer = (state = initialState, action) => {
                     dock
                 }
             };
+        case ADD_RESERVATION:
+            let reservation = action.reservation
+            return {
+                ...state,
+                ...reservation
+            }
+
 
 
 

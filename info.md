@@ -160,3 +160,6 @@ Ref: "images"."dock_id" < "docks"."id"
 Im having a hard time debugging an issue im having with a refresh resetting my state back to an empty object but only on a certain page. I tried using different action types on it and messing with the initial state with no luck, Not really sure where to start debugging the issue.
 
 If we plan on using something like react datePicker or calender, I see they come with css librarys to style just the calender but wanted to see if this was allowed or if we would have to style them all manually.
+
+
+Im getting a 403 forbidden error when I try a POST route, the console Log is telling me that i have an invalid csrf token. Im guessing that I am supposed to pass in a csrf token on my backend

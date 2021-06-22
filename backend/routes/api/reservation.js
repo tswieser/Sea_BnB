@@ -2,8 +2,7 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { setTokenCookie, restoreUser, requireAuth, handleValidationErrors } = require('../../utils/auth.js');
 const { Reservation } = require('../../db/models')
-const csrf = require('csurf');
-const csrfProtection = csrf({ cookie: true });
+const { check, validationResult } = require('express-validator')
 const router = express.Router();
 
 
@@ -18,7 +17,9 @@ const reservationValidator = [
 ]
 
 
-router.post('/', requireAuth, csrfProtection, reservationValidator, asyncHandler(async (req, res, next) => {
+
+
+router.post('/', requireAuth, reservationValidator, asyncHandler(async (req, res, next) => {
     const { start_date, end_date, dock_id, user_id } = req.body;
     const validationErrors = validationResult(req);
 
@@ -29,10 +30,12 @@ router.post('/', requireAuth, csrfProtection, reservationValidator, asyncHandler
             dock_id,
             user_id
         })
+    } else {
+        const errors = validationErrors.array().map((error) => {
+            console.log(errors)
+            return error.msg;
+        })
     }
-
-
-
 }))
 
 
