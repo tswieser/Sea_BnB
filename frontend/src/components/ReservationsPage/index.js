@@ -14,7 +14,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const ReservationPage = () => {
     const { dockId } = useParams();
     const dock = useSelector(state => state.dock[dockId])
-    const user = useSelector(state => state.session.user.id)
+    const user_id = useSelector(state => state.session.user.id)
 
     const [checkIn, setCheckIn] = useState(new Date());
     const [checkOut, setCheckOut] = useState(new Date());
@@ -37,12 +37,13 @@ const ReservationPage = () => {
 
         let start_date = format(checkIn, 'yyyy-mm-dd')
         let end_date = format(checkOut, 'yyyy-mm-dd')
+        let dock_id = dockId
 
         const reservation = {
             start_date,
             end_date,
-            dock,
-            user
+            dock_id,
+            user_id
         }
 
 

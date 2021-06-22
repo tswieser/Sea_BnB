@@ -5,10 +5,12 @@ const asyncHandler = require('express-async-handler');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
 const dockRouter = require('./docks')
+const reservationRouter = require('./reservation')
 
 router.use('/docks', dockRouter)
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/reservation', reservationRouter)
 
 
 
