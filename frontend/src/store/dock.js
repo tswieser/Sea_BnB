@@ -1,4 +1,4 @@
-
+import { csrfFetch } from './csrf'
 
 //ACTION TYPE CONSTANT
 const LOAD_DOCKS = 'docks/LOAD_DOCKS'
@@ -43,17 +43,17 @@ export const getSingularDock = (id) => async dispatch => {
 }
 
 export const AddReservation = (reservation) => async dispatch => {
-    const response = await fetch('/api/reservation', {
+    const response = await csrfFetch('/api/reservation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reservation)
+        
     });
     if (response.ok) {
         const details = await response.json();
         dispatch(postReservation(details));
         return details;
     }
-
 }
 
 //Define initialState

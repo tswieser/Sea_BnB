@@ -21,8 +21,8 @@ const ReservationPage = () => {
     const [checkOut, setCheckOut] = useState(new Date());
 
     useEffect(() => {
-        console.log('checkIn', format(checkIn, 'yyyy-mm-dd'))
-        console.log('checkOut', format(checkOut, 'yyyy-mm-dd'))
+        console.log('checkIn', format(checkIn, 'yyyy-MM-dd'))
+        console.log('checkOut', format(checkOut, 'yyyy-MM-dd'))
     }, [checkIn, checkOut])
 
 
@@ -36,9 +36,11 @@ const ReservationPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let start_date = format(checkIn, 'yyyy-mm-dd')
-        let end_date = format(checkOut, 'yyyy-mm-dd')
+        let start_date = format(checkIn, 'yyyy-MM-dd')
+        let end_date = format(checkOut, 'yyyy-MM-dd')
         let dock_id = dockId
+        console.log('===========>',start_date)
+
 
         const reservation = {
             start_date,
@@ -87,7 +89,7 @@ const ReservationPage = () => {
                     <DatePicker
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Check Out"
-                        // selected={date}
+                        // selected={checkOut}
                         onChange={(date) => setCheckOut(date)}
                     />
                     <button type="submit" className="submit_btn" onClick={handleSubmit}>Book Dock</button>
