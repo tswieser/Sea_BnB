@@ -80,14 +80,17 @@ const docksReducer = (state = initialState, action) => {
         //         }
         //     }
         case FIND_DOCK:
-            let dock= action.dock
+            let dock = action.dock
             // const singleDock = {}
             // action.docks.forEach((dock) => {
             //     singleDock[dock.id] = dock
             // })
             return {
                 ...state,
-                dock
+                [action.dock.id]: {
+                    ...state[action.dock.id],
+                    dock
+                }
             };
 
 
