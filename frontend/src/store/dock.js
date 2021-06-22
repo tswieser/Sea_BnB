@@ -1,4 +1,4 @@
-import { csrfFetch } from './csrf';
+
 
 //ACTION TYPE CONSTANT
 const LOAD_DOCKS = 'docks/LOAD_DOCKS'
@@ -35,7 +35,7 @@ export const getDocks = () => async (dispatch) => {
 
 
 export const getSingularDock = (id) => async dispatch => {
-    const response = await csrfFetch(`/api/docks/${id}`);
+    const response = await fetch(`/api/docks/${id}`);
     const dock = await response.json();
 
     dispatch(findDock(dock))

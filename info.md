@@ -162,4 +162,4 @@ Im having a hard time debugging an issue im having with a refresh resetting my s
 If we plan on using something like react datePicker or calender, I see they come with css librarys to style just the calender but wanted to see if this was allowed or if we would have to style them all manually.
 
 
-Im getting a 403 forbidden error when I try a POST route, the console Log is telling me that i have an invalid csrf token. Im guessing that I am supposed to pass in a csrf token on my backend
+Im getting a 403 forbidden error when I try a POST route, the console Log is telling me that i have an invalid csrf token Looking at the browser it shows me having the CSRF cookie. Im guessing that I am supposed to send back a csrf token on the post or I may not be handling it correctly on the front end and Im having a hard time finding any references that are relevant.
