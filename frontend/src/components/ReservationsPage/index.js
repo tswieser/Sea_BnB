@@ -40,22 +40,20 @@ const ReservationPage = () => {
         let start_date = format(checkIn, 'yyyy-MM-dd')
         let end_date = format(checkOut, 'yyyy-MM-dd')
         let dock_id = dockId
-        // console.log('===========>', start_date)
-
-
+        
         const reservation = {
             start_date,
             end_date,
             dock_id,
             user_id
         }
-        history.push('/api/docks')
+        // history.push('/api/docks')
 
         const stayInfo = await dispatch(AddReservation(reservation))
 
-        // if (stayInfo) {
-        //     history.push('/api/docks')
-        // }
+        if (stayInfo) {
+            history.push('/api/docks')
+        }
 
     }
 

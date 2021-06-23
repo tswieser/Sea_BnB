@@ -166,3 +166,5 @@ Im getting a 403 forbidden error when I try a POST route, the console Log is tel
 
 
 Im attempting to figure out how to utilize requireAuth middleware  to redirect the user to the login page rather than breaking the entire app. Ive attempted by changing the backend middleware to do a res.redirect rather than send an error but no luck. any suggestions on where to try next?
+
+Im having an issue where my page wont redirect if i put my history.push after my dispatch but it works before it. So Its working before it and either way its logging it correctly in my database but I just wanted to make sure that there isnt an underlying issue that i will run into down the line because I am assuming its getting stuck on my dispatch.
