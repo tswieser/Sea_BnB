@@ -6,11 +6,13 @@ const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.j
 const { User } = require('../../db/models');
 const dockRouter = require('./docks')
 const reservationRouter = require('./reservation')
+const reviewRouter = require('./reviews')
 
 router.use('/docks', dockRouter)
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/reservation', reservationRouter)
+router.use('/review', reviewRouter)
 
 
 

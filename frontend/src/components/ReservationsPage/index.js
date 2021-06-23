@@ -3,6 +3,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getSingularDock, getDocks } from '../../store/dock';
 import { AddReservation } from '../../store/reservations';
+import ReactStars from "react-rating-stars-component";
 import { avgRating } from '../DocksPage'
 import './ReservationPage.css'
 import DatePicker from "react-datepicker";
@@ -27,12 +28,16 @@ const ReservationPage = () => {
     const [showModal, setShowModal] = useState(true);
     const [checkIn, setCheckIn] = useState(new Date());
     const [checkOut, setCheckOut] = useState(new Date());
+    const [rating, setRating] = useState(null)
 
 
     useEffect(async () => {
         await dispatch(getDocks(),);
     }, [dispatch])
 
+    useEffect(() => {
+        console.log(rating)
+    }, [rating])
 
     const handleSubmit = async (e) => {
         let user_id = state.user.id
@@ -58,8 +63,8 @@ const ReservationPage = () => {
 
     }
 
-    if (!state.user) {
 
+    if (!state.user) {
         return (
             <>
                 {showModal && (
@@ -69,9 +74,6 @@ const ReservationPage = () => {
                 )}
             </>
         );
-        // history.push('/')
-        // console.log(flag)
-
     }
 
 
@@ -125,9 +127,15 @@ const ReservationPage = () => {
                     ))}
                     <form>
                         <label>
-                        
-
-
+                            <ReactStars
+                                count={5}
+                                onChange={setRating}
+                                size={45}
+                                isHalf={false}
+                                emptyIcon={<i className="far fa-star"></i>}
+                                fullIcon={<i className="fas fa-star"></i>}
+                                activeColor='#E04562'
+                            />
                         </label>
                         <h2> Leave a Review </h2>
                         <textarea rows="10" cols='50' placeholder="Leave Your Review Here"></textarea>

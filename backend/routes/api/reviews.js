@@ -1,45 +1,39 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const {  requireAuth } = require('../../utils/auth.js');
-const { Reservation } = require('../../db/models')
+const { requireAuth, handleValidationErrors } = require('../../utils/auth.js');
+const { Review } = require('../../db/models')
 const { check, validationResult } = require('express-validator')
 const router = express.Router();
 
-
 const reservationValidator = [
-    check('start_date')
+    check('rating')
         .exists({ checkFalsy: true })
-        .withMessage("Please enter your check In Date"),
-    check('end_date')
+        .withMessage("Please enter rating"),
+    check('review')
         .exists({ checkFalsy: true })
-        .withMessage("Please enter your check In Date"),
+        .withMessage("Please write your review"),
 
 ]
 
-
 router.post('/', requireAuth, reservationValidator, asyncHandler(async (req, res, next) => {
-    const { start_date, end_date, dock_id, user_id } = req.body;
+    const { rating, review, user_id, dock_id } = req.body;
     const validationErrors = validationResult(req);
-    // console.log('=================>', res)
     if (validationErrors.isEmpty()) {
-        const stayInfo = await Reservation.create({
-            start_date,
-            end_date,
-            dock_id,
-            user_id
+        const newReview = await Review.create({
+            rating,
+            review,
+            user_id,
+            dock_id
         })
-        return res.json(stayInfo)
+        return res.json(newReview)
     } else {
         const errors = validationErrors.array().map((error) => {
             console.log(errors)
             return error.msg;
         })
     }
+
+
 }))
-
-
-
-
-
 
 module.exports = router
