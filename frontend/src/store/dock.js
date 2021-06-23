@@ -5,7 +5,7 @@ const LOAD_DOCKS = 'docks/LOAD_DOCKS'
 
 const FIND_DOCK = 'dock/FIND_DOCK'
 
-const ADD_RESERVATION = 'dock/ADD_RESERVATION'
+
 
 //Action creator
 const loadDocks = (docks) => ({
@@ -18,10 +18,6 @@ const findDock = (dock) => ({
     dock,
 });
 
-const postReservation = (reservation) => ({
-    type: ADD_RESERVATION,
-    reservation,
-});
 
 
 
@@ -42,19 +38,6 @@ export const getSingularDock = (id) => async dispatch => {
 
 }
 
-export const AddReservation = (reservation) => async dispatch => {
-    const response = await csrfFetch('/api/reservation', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reservation)
-        
-    });
-    if (response.ok) {
-        const details = await response.json();
-        dispatch(postReservation(details));
-        return details;
-    }
-}
 
 //Define initialState
 const initialState = {}
@@ -80,15 +63,6 @@ const docksReducer = (state = initialState, action) => {
                     dock
                 }
             };
-        case ADD_RESERVATION:
-            let reservation = action.reservation
-            return {
-                ...state,
-                ...reservation
-            }
-
-
-
 
 
         default:

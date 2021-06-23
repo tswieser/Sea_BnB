@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getSingularDock, getDocks, AddReservation } from '../../store/dock';
+import { getSingularDock, getDocks } from '../../store/dock';
+import { AddReservation } from '../../store/reservations';
 import { avgRating } from '../DocksPage'
 import './ReservationPage.css'
 import DatePicker from "react-datepicker";
@@ -121,9 +122,18 @@ const ReservationPage = () => {
                             <p>{title.review}</p>
                             <p><i className="fas fa-star"></i> {title.rating} </p>
                         </div>
-
                     ))}
+                    <form>
+                        <label>
+                        
 
+
+                        </label>
+                        <h2> Leave a Review </h2>
+                        <textarea rows="10" cols='50' placeholder="Leave Your Review Here"></textarea>
+
+                        <button type="submit" className="submit_btn">Submit Review </button>
+                    </form>
 
 
                 </div>

@@ -22,14 +22,15 @@ const reservationValidator = [
 router.post('/', requireAuth, reservationValidator, asyncHandler(async (req, res, next) => {
     const { start_date, end_date, dock_id, user_id } = req.body;
     const validationErrors = validationResult(req);
-    console.log('=================>', res)
+    // console.log('=================>', res)
     if (validationErrors.isEmpty()) {
-        await Reservation.create({
+        const stayInfo = await Reservation.create({
             start_date,
             end_date,
             dock_id,
             user_id
         })
+        return res.json(stayInfo)
     } else {
         const errors = validationErrors.array().map((error) => {
             console.log(errors)
