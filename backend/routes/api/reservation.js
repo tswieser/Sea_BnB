@@ -18,12 +18,11 @@ const reservationValidator = [
 
 
 
-// requireAuth, reservationValidator,
 
-router.post('/', asyncHandler(async (req, res, next) => {
+router.post('/', requireAuth, reservationValidator, asyncHandler(async (req, res, next) => {
     const { start_date, end_date, dock_id, user_id } = req.body;
     const validationErrors = validationResult(req);
-
+    console.log('=================>', res)
     if (validationErrors.isEmpty()) {
         await Reservation.create({
             start_date,

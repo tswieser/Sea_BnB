@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getSingularDock, getDocks, AddReservation } from '../../store/dock';
 import { avgRating } from '../DocksPage'
@@ -7,26 +7,26 @@ import './ReservationPage.css'
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { Modal } from '../../context/Modal';
+import LoginForm from '../LoginFormModal/LoginForm';
 
 
 
 
 const ReservationPage = () => {
     const { dockId } = useParams();
-    const dock = useSelector(state => state.dock[dockId])
-    const user_id = useSelector(state => state.session.user.id)
 
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const state = useSelector(state => state.session)
+    const dock = useSelector(state => state.dock[dockId])
+
+
+    const [showModal, setShowModal] = useState(true);
     const [checkIn, setCheckIn] = useState(new Date());
     const [checkOut, setCheckOut] = useState(new Date());
 
-    useEffect(() => {
-        console.log('checkIn', format(checkIn, 'yyyy-MM-dd'))
-        console.log('checkOut', format(checkOut, 'yyyy-MM-dd'))
-    }, [checkIn, checkOut])
-
-
-    const dispatch = useDispatch()
 
     useEffect(async () => {
         await dispatch(getDocks(),);
@@ -34,12 +34,13 @@ const ReservationPage = () => {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        let user_id = state.user.id
 
+        e.preventDefault();
         let start_date = format(checkIn, 'yyyy-MM-dd')
         let end_date = format(checkOut, 'yyyy-MM-dd')
         let dock_id = dockId
-        console.log('===========>',start_date)
+        // console.log('===========>', start_date)
 
 
         const reservation = {
@@ -48,11 +49,31 @@ const ReservationPage = () => {
             dock_id,
             user_id
         }
-        dispatch(AddReservation(reservation))
+        history.push('/api/docks')
+
+        const stayInfo = await dispatch(AddReservation(reservation))
+
+        // if (stayInfo) {
+        //     history.push('/api/docks')
+        // }
 
     }
 
+    if (!state.user) {
 
+        return (
+            <>
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <LoginForm />
+                    </Modal>
+                )}
+            </>
+        );
+        // history.push('/')
+        // console.log(flag)
+
+    }
 
 
     return (
@@ -83,16 +104,17 @@ const ReservationPage = () => {
                     <DatePicker
                         dateFormat="yyyy/MM/dd"
                         placeholderText="Check In"
-                        // selected={checkIn}
+                        selected={checkIn}
                         onChange={(date) => setCheckIn(date)}
                     />
+
                     <DatePicker
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Check Out"
-                        // selected={checkOut}
+                        selected={checkOut}
                         onChange={(date) => setCheckOut(date)}
                     />
-                    <button type="submit" className="submit_btn" onClick={handleSubmit}>Book Dock</button>
+                    <button type="button" className="submit_btn" onClick={handleSubmit}>Book Dock</button>
                 </div>
 
             </div >)}

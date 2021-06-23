@@ -163,3 +163,6 @@ If we plan on using something like react datePicker or calender, I see they come
 
 
 Im getting a 403 forbidden error when I try a POST route, the console Log is telling me that i have an invalid csrf token Looking at the browser it shows me having the CSRF cookie. Im guessing that I am supposed to send back a csrf token on the post or I may not be handling it correctly on the front end and Im having a hard time finding any references that are relevant.
+
+
+Im attempting to figure out how to utilize requireAuth middleware  to redirect the user to the login page rather than breaking the entire app. Ive attempted by changing the backend middleware to do a res.redirect rather than send an error but no luck. any suggestions on where to try next?

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -17,8 +17,11 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
+
         <LoginFormModal />
+
         <SignupFormPage />
+
       </>
     );
   }
@@ -28,6 +31,9 @@ function Navigation({ isLoaded }) {
       <li className="nav_bar" >
         <NavLink exact to="/" ><i className="fas fa-anchor fa-2x"></i></NavLink>
         {isLoaded && sessionLinks}
+      </li>
+      <li>
+        <NavLink exact to='/api/docks'>Docks</NavLink>
       </li>
     </ul>
   );

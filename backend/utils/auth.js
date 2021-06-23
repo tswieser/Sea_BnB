@@ -51,7 +51,7 @@ const restoreUser = (req, res, next) => {
 };
 
 
-// If there is no current user, return an error
+// If there is no current user, send to
 const requireAuth = [
     restoreUser,
     function (req, res, next) {
@@ -64,6 +64,15 @@ const requireAuth = [
         return next(err);
     },
 ];
+
+
+// const requireAuth = (req, res, next) => {
+//     if (!req.user) {
+//         return res.redirect('/api/users')
+//     }
+//     return next();
+// }
+
 
 
 module.exports = { setTokenCookie, restoreUser, requireAuth };

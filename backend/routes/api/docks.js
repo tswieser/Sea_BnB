@@ -1,6 +1,8 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
+const { requireAuth } = require('../../utils/auth.js');
+
 
 const { Dock, User, Image, Review } = require('../../db/models')
 
@@ -14,6 +16,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 router.get('/:id', asyncHandler(async (req, res) => {
+    console.log('=================>', requireAuth)
     const dock = await Dock.findOne({
         where: {
             id: req.params.id
