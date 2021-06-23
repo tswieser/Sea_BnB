@@ -40,7 +40,7 @@ const ReservationPage = () => {
         let start_date = format(checkIn, 'yyyy-MM-dd')
         let end_date = format(checkOut, 'yyyy-MM-dd')
         let dock_id = dockId
-        
+
         const reservation = {
             start_date,
             end_date,
@@ -114,8 +114,22 @@ const ReservationPage = () => {
                     />
                     <button type="button" className="submit_btn" onClick={handleSubmit}>Book Dock</button>
                 </div>
+                <div className="reviews_container">
+                    <h2>Reviews</h2>
+                    {dock.Reviews.map((title) => (
+                        < div >
+                            <p>{title.review}</p>
+                            <p><i className="fas fa-star"></i> {title.rating} </p>
+                        </div>
 
-            </div >)}
+                    ))}
+
+
+
+                </div>
+
+            </div >)
+            }
         </>
     )
 
