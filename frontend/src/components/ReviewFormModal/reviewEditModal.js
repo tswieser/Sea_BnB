@@ -28,7 +28,7 @@ function ReviewEdit({ reviewId, user_id, dock_id }) {
 
         const info = await dispatch(updateReview(data))
 
-        console.log(info)
+        
 
         const resetValues = () => {
             setRating(null);
