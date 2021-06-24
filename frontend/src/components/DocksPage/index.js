@@ -1,4 +1,4 @@
-import {  useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getDocks } from '../../store/dock';
@@ -11,7 +11,8 @@ export function avgRating(numArr) {
             let review = numArr[i];
             avg += review.rating;
         }
-        return avg / numArr.length
+        let rounded = avg / numArr.length
+        return Math.round(rounded * 100) / 100
     } else {
         return ('No Reviews')
     }

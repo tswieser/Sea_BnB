@@ -3,6 +3,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getSingularDock, getDocks } from '../../store/dock';
 import { AddReservation } from '../../store/reservations';
+import reviewReducer, { AddReview, GetReviews, deleteReview } from '../../store/reviews';
 import ReactStars from "react-rating-stars-component";
 import { avgRating } from '../DocksPage'
 import './ReservationPage.css'
@@ -11,7 +12,7 @@ import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
-
+import EditFormModal from '../ReviewFormModal'
 
 
 
@@ -29,17 +30,20 @@ const ReservationPage = () => {
     const [checkIn, setCheckIn] = useState(new Date());
     const [checkOut, setCheckOut] = useState(new Date());
     const [rating, setRating] = useState(null)
+    const [review, setReview] = useState('')
+
 
 
     useEffect(async () => {
-        await dispatch(getDocks(),);
+        await dispatch(getDocks());
+        await dispatch(GetReviews())
     }, [dispatch])
 
     useEffect(() => {
-        console.log(rating)
-    }, [rating])
+        // console.log(review)
+    }, [review])
 
-    const handleSubmit = async (e) => {
+    const handleReservationSubmit = async (e) => {
         let user_id = state.user.id
 
         e.preventDefault();
@@ -63,6 +67,32 @@ const ReservationPage = () => {
 
     }
 
+    const handleReviewSubmit = async (e) => {
+        let user_id = state.user.id
+        let dock_id = dockId
+        e.preventDefault();
+
+        const data = {
+            rating,
+            review,
+            user_id,
+            dock_id
+        };
+        const reviewInfo = await dispatch(AddReview(data))
+        console.log(reviewInfo)
+        const resetValues = () => {
+            setRating(null);
+            setReview('');
+        };
+        resetValues()
+    }
+
+    const handleDeleteSubmit = async (id) => {
+
+        const deletedReview = await dispatch(deleteReview(id))
+
+    }
+
 
     if (!state.user) {
         return (
@@ -74,6 +104,20 @@ const ReservationPage = () => {
                 )}
             </>
         );
+    }
+
+
+    function checkButtons(id, reviewId) {
+        let user_id = state.user.id
+        let dock_id = parseInt(dockId)
+        if (user_id === id) {
+            return (
+                <>
+                    <button onClick={() => handleDeleteSubmit(reviewId)}>Delete</button>
+                    <EditFormModal reviewId={reviewId} user_id={user_id} dock_id={dock_id} />
+                </>
+            )
+        }
     }
 
 
@@ -115,7 +159,7 @@ const ReservationPage = () => {
                         selected={checkOut}
                         onChange={(date) => setCheckOut(date)}
                     />
-                    <button type="button" className="submit_btn" onClick={handleSubmit}>Book Dock</button>
+                    <button type="button" className="submit_btn" onClick={handleReservationSubmit}>Book Dock</button>
                 </div>
                 <div className="reviews_container">
                     <h2>Reviews</h2>
@@ -123,9 +167,12 @@ const ReservationPage = () => {
                         < div >
                             <p>{title.review}</p>
                             <p><i className="fas fa-star"></i> {title.rating} </p>
+                            {checkButtons(title.user_id, title.id)}
+
+
                         </div>
                     ))}
-                    <form>
+                    <form onSubmit={handleReviewSubmit}>
                         <label>
                             <ReactStars
                                 count={5}
@@ -138,9 +185,9 @@ const ReservationPage = () => {
                             />
                         </label>
                         <h2> Leave a Review </h2>
-                        <textarea rows="10" cols='50' placeholder="Leave Your Review Here"></textarea>
+                        <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='50' placeholder="Leave Your Review Here"></textarea>
 
-                        <button type="submit" className="submit_btn">Submit Review </button>
+                        <button type="submit" className="submit_btn" >Submit Review </button>
                     </form>
 
 
