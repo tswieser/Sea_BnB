@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-// import ReviewEdit from './reviewEditModal'
+import ReservationEdit from './reservationModal'
 
 
 
-function ConfirmReservationModal({ reviewId, user_id, dock_id }) {
+function EditReservationModal({ reservation }) {
     const [showModal, setShowModal] = useState(false);
 
 
@@ -13,11 +13,11 @@ function ConfirmReservationModal({ reviewId, user_id, dock_id }) {
             <button className="edit_btn" onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <ReviewEdit reviewId={reviewId} user_id={user_id} dock_id={dock_id} />
+                    <ReservationEdit reservation={reservation} />
                 </Modal>
             )}
         </>
     );
 }
 
-export default ConfirmReservationModal;
+export default EditReservationModal;

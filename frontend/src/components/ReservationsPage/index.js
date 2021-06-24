@@ -24,6 +24,7 @@ const ReservationPage = () => {
 
     const state = useSelector(state => state.session)
     const dock = useSelector(state => state.dock[dockId])
+    const reviews = useSelector(state => state.review)
 
 
     const [showModal, setShowModal] = useState(true);
@@ -36,8 +37,8 @@ const ReservationPage = () => {
 
     useEffect(async () => {
         await dispatch(getDocks());
-        await dispatch(GetReviews())
-    }, [dispatch])
+        // await dispatch(GetReviews())
+    }, [dispatch, reviews])
 
     useEffect(() => {
         // console.log(review)
@@ -62,7 +63,7 @@ const ReservationPage = () => {
         const stayInfo = await dispatch(AddReservation(reservation))
 
         if (stayInfo) {
-            history.push('/api/docks')
+            history.push('/api/reservation')
         }
 
     }

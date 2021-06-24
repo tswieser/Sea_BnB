@@ -35,6 +35,9 @@ function Navigation({ isLoaded }) {
       <li>
         <NavLink exact to='/api/docks'>Docks</NavLink>
       </li>
+      <li>
+        <NavLink exact to="/api/reservation">Reservation</NavLink>
+      </li>
     </ul>
   );
 }

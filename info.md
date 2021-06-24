@@ -168,3 +168,78 @@ Im getting a 403 forbidden error when I try a POST route, the console Log is tel
 Im attempting to figure out how to utilize requireAuth middleware  to redirect the user to the login page rather than breaking the entire app. Ive attempted by changing the backend middleware to do a res.redirect rather than send an error but no luck. any suggestions on where to try next?
 
 Im having an issue where my page wont redirect if i put my history.push after my dispatch but it works before it. So Its working before it and either way its logging it correctly in my database but I just wanted to make sure that there isnt an underlying issue that i will run into down the line because I am assuming its getting stuck on my dispatch.
+
+``` javascript
+import ReactStars from "react-rating-stars-component";
+import { useEffect, useState } from 'react';
+import reviewReducer, { updateReview } from '../../store/reviews';
+import { useDispatch } from 'react-redux'
+import { getDocks } from '../../store/dock'
+
+
+function ReviewEdit({ reviewId, user_id, dock_id }) {
+    const [rating, setRating] = useState(null)
+    const [review, setReview] = useState('')
+    const dispatch = useDispatch()
+
+
+
+    const handleReviewSubmit = async (e) => {
+        let id = reviewId
+
+        e.preventDefault();
+
+        const data = {
+            id,
+            rating,
+            review,
+            user_id,
+            dock_id
+
+        };
+
+
+        const info = await dispatch(updateReview(data))
+        // await dispatch(getDocks())
+
+
+
+        const resetValues = () => {
+            setRating(null);
+            setReview('');
+        };
+        resetValues()
+    }
+
+
+
+
+    return (
+
+        <div className="form_container">
+            <form onSubmit={handleReviewSubmit}>
+                <label>
+                    <ReactStars
+                        count={5}
+                        onChange={setRating}
+                        size={45}
+                        isHalf={false}
+                        emptyIcon={<i className="far fa-star"></i>}
+                        fullIcon={<i className="fas fa-star"></i>}
+                        activeColor='#E04562'
+                    />
+                </label>
+                <h2> Edit Review </h2>
+                <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='50' placeholder="Leave Your Review Here"></textarea>
+
+                <button type="submit" className="submit_btn" >Submit Review </button>
+            </form>
+        </div>
+
+
+    )
+
+}
+
+export default ReviewEdit
+```

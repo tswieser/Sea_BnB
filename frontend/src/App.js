@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import DockPage from "./components/DocksPage";
 import ReservationPage from './components/ReservationsPage'
+import ConfirmReservationModal from './components/ResReview'
 
 
 function App() {
@@ -21,10 +22,13 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/api/docks">
-          <DockPage />
+            <DockPage />
           </Route>
           <Route exact path="/api/docks/:dockId">
-          <ReservationPage />
+            <ReservationPage />
+          </Route>
+          <Route exact path="/api/reservation">
+            <ConfirmReservationModal />
           </Route>
         </Switch>
       )}

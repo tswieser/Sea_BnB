@@ -4,7 +4,7 @@ import ReviewEdit from './reviewEditModal'
 
 
 
-function EditFormModal({ reviewId, user_id, dock_id }) {
+function EditFormModal({ reviewId, user_id,dock_id }) {
     const [showModal, setShowModal] = useState(false);
 
 

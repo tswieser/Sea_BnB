@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const {  requireAuth } = require('../../utils/auth.js');
-const { Reservation } = require('../../db/models')
+const { requireAuth } = require('../../utils/auth.js');
+const { Reservation, Dock } = require('../../db/models')
 const { check, validationResult } = require('express-validator')
 const router = express.Router();
 
@@ -15,6 +15,14 @@ const reservationValidator = [
         .withMessage("Please enter your check In Date"),
 
 ]
+
+
+router.get('/', asyncHandler(async (req, res) => {
+    const reservations = await Reservation.findAll({
+        include: [Dock]
+    });
+    res.json(reservations)
+}))
 
 
 router.post('/', requireAuth, reservationValidator, asyncHandler(async (req, res, next) => {
@@ -37,6 +45,25 @@ router.post('/', requireAuth, reservationValidator, asyncHandler(async (req, res
     }
 }))
 
+
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const reservationId = parseInt(req.params.id)
+    const reservation = await Reservation.findByPk(reservationId);
+    if (reservation) {
+        await reservation.destroy()
+    }
+    return res.json(reservationId)
+}))
+
+
+router.put('/:id', asyncHandler(async function (req, res) {
+    const { id, start_date, end_date, dock_id, user_id } = req.body
+    const oldReservation = await Reservation.findByPk(id)
+    const newReservation = await oldReservation.update({ id, start_date, end_date, dock_id, user_id })
+    return res.json(newReservation)
+
+})
+);
 
 
 

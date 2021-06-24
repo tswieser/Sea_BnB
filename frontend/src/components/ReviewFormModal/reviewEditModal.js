@@ -2,6 +2,7 @@ import ReactStars from "react-rating-stars-component";
 import { useEffect, useState } from 'react';
 import reviewReducer, { updateReview } from '../../store/reviews';
 import { useDispatch } from 'react-redux'
+import { getDocks } from '../../store/dock'
 
 
 function ReviewEdit({ reviewId, user_id, dock_id }) {
@@ -27,8 +28,9 @@ function ReviewEdit({ reviewId, user_id, dock_id }) {
 
 
         const info = await dispatch(updateReview(data))
+        // await dispatch(getDocks())
 
-        
+
 
         const resetValues = () => {
             setRating(null);

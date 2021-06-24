@@ -25,12 +25,11 @@ const update = (review) => ({
     review,
 });
 
-console.log(postReview)
+
 
 export const GetReviews = () => async (dispatch) => {
     const response = await fetch('/api/review');
     const reviews = await response.json();
-    // console.log('=============>', reviews)
     dispatch(loadReviews(reviews))
 }
 
@@ -52,7 +51,7 @@ export const deleteReview = (reviewId) => async dispatch => {
     })
     if (response.ok) {
         const review = await response.json();
-        dispatch(remove(review.reviewId));
+        dispatch(remove(review));
         return review
     }
 }
@@ -79,22 +78,18 @@ const reviewReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case LOAD_REVIEWS:
-            const allReviews = {}
+            const allReviews = { ...state }
             action.reviews.forEach((review) => {
                 allReviews[review.id] = review
             });
-            return {
-                ...state,
-                ...allReviews
-            };
+            return allReviews
+
         case ADD_REVIEW:
             let review = action.review
-            return {
-                ...state,
-                [action.review.id]: {
-                    ...review
-                }
-            }
+            let oldState = { ...state }
+            oldState[review.id] = review
+            return oldState
+
         case UPDATE_REVIEW:
             review = action.review
             return {
