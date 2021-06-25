@@ -14,6 +14,8 @@ module.exports = {
         lat: null,
         lng: null,
         user_id: 1,
+        createdAt: '2021-06-21 00:00:00-04',
+        updatedAt: '2021-06-21 00:00:00-04'
       },
       {
         dock_name: 'North Shore Ocean View Slip',
@@ -24,6 +26,8 @@ module.exports = {
         lat: null,
         lng: null,
         user_id: 1,
+        createdAt: '2021-06-21 00:00:00-04',
+        updatedAt: '2021-06-21 00:00:00-04'
       },
       {
         dock_name: 'Dock With a View',
@@ -34,6 +38,8 @@ module.exports = {
         lat: null,
         lng: null,
         user_id: 1,
+        createdAt: '2021-06-21 00:00:00-04',
+        updatedAt: '2021-06-21 00:00:00-04'
       },
       {
         dock_name: 'Sandy Shores Marina',
@@ -44,6 +50,8 @@ module.exports = {
         lat: null,
         lng: null,
         user_id: 1,
+        createdAt: '2021-06-21 00:00:00-04',
+        updatedAt: '2021-06-21 00:00:00-04'
       },
       {
         dock_name: 'Safe Haven Marina',
@@ -54,6 +62,8 @@ module.exports = {
         lat: null,
         lng: null,
         user_id: 1,
+        createdAt: '2021-06-21 00:00:00-04',
+        updatedAt: '2021-06-21 00:00:00-04'
       },
     ], {});
 
