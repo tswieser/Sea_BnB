@@ -27,7 +27,7 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <ul>
+    <ul id="nav_container">
       <li className="nav_bar" >
         <NavLink exact to="/" ><i className="fas fa-anchor fa-4x"></i></NavLink>
         <div id="site_title">Sea BnB</div>
