@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import './reservationModal.css'
 
 
-function ReservationEdit({ reservation }) {
+function ReservationEdit({ reservation, setShowModal }) {
     const state = useSelector(state => state.session)
 
     const dispatch = useDispatch()
@@ -40,8 +40,10 @@ function ReservationEdit({ reservation }) {
         }
         console.log(reservationInfo)
 
+        setShowModal(false)
+
         const stayInfo = await dispatch(updateReservation(reservationInfo))
-        // await dispatch(GetReservations())
+        await dispatch(GetReservations())
 
         if (stayInfo) {
             // await dispatch(GetReservations())

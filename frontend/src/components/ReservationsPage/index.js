@@ -13,6 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import EditFormModal from '../ReviewFormModal'
+import { GetReservations } from '../../store/reservations'
 
 
 
@@ -61,6 +62,7 @@ const ReservationPage = () => {
         // history.push('/api/docks')
 
         const stayInfo = await dispatch(AddReservation(reservation))
+        // await dispatch(GetReservations())
 
         if (stayInfo) {
             history.push('/api/reservation')
@@ -125,11 +127,16 @@ const ReservationPage = () => {
     return (
         <>
             {dock && (< div className="main-container" >
-                <h2 className="Title">{dock.dock_name}</h2>
+                <h2 className="title">{dock.dock_name}</h2>
 
                 <div className="basic_info_container">
-                    <div className="dock_rating"><i className="fas fa-star"></i> {avgRating(dock.Reviews)}   ({dock.Reviews.length} reviews)</div>
-                    <div className="location">{dock.city}, {dock.state}, United States</div>
+
+                    <i className="fas fa-star"></i>
+                    {avgRating(dock.Reviews)}&nbsp;
+                    ({dock.Reviews.length} reviews)&nbsp;
+
+                    <span> {dock.city}, {dock.state}, United States</span>
+
                 </div>
 
                 <div className="img_container">

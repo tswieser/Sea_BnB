@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import './reviewModal.css'
 
 
-function ReviewEdit({ reviewId, user_id, dock_id }) {
+function ReviewEdit({ reviewId, user_id, dock_id, setShowModal }) {
     const [rating, setRating] = useState(null)
     const [review, setReview] = useState('')
     const dispatch = useDispatch()
@@ -31,6 +31,7 @@ function ReviewEdit({ reviewId, user_id, dock_id }) {
 
 
         const info = await dispatch(updateReview(data))
+        setShowModal(false)
 
 
 

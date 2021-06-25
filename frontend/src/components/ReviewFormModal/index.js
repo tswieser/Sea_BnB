@@ -4,7 +4,7 @@ import ReviewEdit from './reviewEditModal'
 
 
 
-function EditFormModal({ reviewId, user_id,dock_id }) {
+function EditFormModal({ reviewId, user_id, dock_id }) {
     const [showModal, setShowModal] = useState(false);
 
 
@@ -13,7 +13,7 @@ function EditFormModal({ reviewId, user_id,dock_id }) {
             <button className="edit_btn" onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <ReviewEdit reviewId={reviewId} user_id={user_id} dock_id={dock_id} />
+                    <ReviewEdit setShowModal={setShowModal} reviewId={reviewId} user_id={user_id} dock_id={dock_id} />
                 </Modal>
             )}
         </>

@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import DockPage from "./components/DocksPage";
 import ReservationPage from './components/ReservationsPage'
 import ConfirmReservationModal from './components/ResReview'
+import HomeBrowser from './components/HomePage'
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <HomeBrowser />
+          </Route>
           <Route exact path="/api/docks">
             <DockPage />
           </Route>

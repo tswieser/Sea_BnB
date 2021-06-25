@@ -13,7 +13,7 @@ function EditReservationModal({ reservation }) {
             <button className="resBtn" onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <ReservationEdit reservation={reservation} />
+                    <ReservationEdit setShowModal={setShowModal} reservation={reservation} />
                 </Modal>
             )}
         </>

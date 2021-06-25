@@ -169,6 +169,8 @@ Im attempting to figure out how to utilize requireAuth middleware  to redirect t
 
 Im having an issue where my page wont redirect if i put my history.push after my dispatch but it works before it. So Its working before it and either way its logging it correctly in my database but I just wanted to make sure that there isnt an underlying issue that i will run into down the line because I am assuming its getting stuck on my dispatch.
 
+Im having a problem where after I edit a reservation the returned value does not have the needed "include Docks"  when it returns the new state that was created when i originally rendered the page. Ive attempted dispatching the Original GET request after submitting for an edit and messing with a few different kinds of states to return but havent been able to have any luck.
+
 ``` javascript
 import ReactStars from "react-rating-stars-component";
 import { useEffect, useState } from 'react';

@@ -59,7 +59,7 @@ function ConfirmReservation() {
                                 <div>Departing on {reservation.end_date.slice(0, 10)}</div>
                                 <div className="button_container">
                                     <button className="resBtn" onClick={() => handleDeleteSubmit(reservation.id)}>Delete</button>
-                                    <EditReservationModal reservation={reservation} />
+                                    <EditReservationModal setShowModal={setShowModal} reservation={reservation} />
                                 </div>
                             </div>
                         ) : <></>
