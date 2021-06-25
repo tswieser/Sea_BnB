@@ -24,9 +24,13 @@ background-size: 100% 80%;
 .pic_btn{
     margin-top: 10px;
     border-radius:7px;
-border:1px solid lightgrey;
-padding: 0.5em;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-width:100px;
-transition:background-color;
+    border:1px solid lightgrey;
+    padding: 0.5em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    width:100px;
+    transition:background-color;
+}
+
+.pic_btn:hover{
+background-color: rgb(201, 201, 200);
 }
