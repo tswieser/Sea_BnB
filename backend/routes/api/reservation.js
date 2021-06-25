@@ -57,9 +57,10 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
 
 router.put('/:id', asyncHandler(async function (req, res) {
-    const { id, start_date, end_date, dock_id, user_id } = req.body
+    const { id, start_date, end_date, user_id, dock_id } = req.body
     const oldReservation = await Reservation.findByPk(id)
-    const newReservation = await oldReservation.update({ id, start_date, end_date, dock_id, user_id })
+    const newReservation = await oldReservation.update({ id, start_date, end_date, user_id, dock_id })
+    // console.log(newReservation)
     return res.json(newReservation)
 
 })

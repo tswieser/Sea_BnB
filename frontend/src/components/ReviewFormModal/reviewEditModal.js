@@ -2,13 +2,16 @@ import ReactStars from "react-rating-stars-component";
 import { useEffect, useState } from 'react';
 import reviewReducer, { updateReview } from '../../store/reviews';
 import { useDispatch } from 'react-redux'
-import { getDocks } from '../../store/dock'
+import './reviewModal.css'
 
 
 function ReviewEdit({ reviewId, user_id, dock_id }) {
     const [rating, setRating] = useState(null)
     const [review, setReview] = useState('')
     const dispatch = useDispatch()
+
+
+
 
 
 
@@ -28,7 +31,7 @@ function ReviewEdit({ reviewId, user_id, dock_id }) {
 
 
         const info = await dispatch(updateReview(data))
-        // await dispatch(getDocks())
+
 
 
 
@@ -46,7 +49,8 @@ function ReviewEdit({ reviewId, user_id, dock_id }) {
 
         <div className="form_container">
             <form onSubmit={handleReviewSubmit}>
-                <label>
+                <h2 id="edit_title"> Edit Review </h2>
+                <label className="star_div">
                     <ReactStars
                         count={5}
                         onChange={setRating}
@@ -57,7 +61,6 @@ function ReviewEdit({ reviewId, user_id, dock_id }) {
                         activeColor='#E04562'
                     />
                 </label>
-                <h2> Edit Review </h2>
                 <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='50' placeholder="Leave Your Review Here"></textarea>
 
                 <button type="submit" className="submit_btn" >Submit Review </button>

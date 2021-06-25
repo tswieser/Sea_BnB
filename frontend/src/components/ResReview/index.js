@@ -6,6 +6,7 @@ import LoginForm from '../LoginFormModal/LoginForm';
 import { Link } from 'react-router-dom'
 import { format } from "date-fns";
 import EditReservationModal from '../ReservationFormModal'
+import './ResReview.css';
 
 
 
@@ -14,7 +15,6 @@ function ConfirmReservation() {
     const reservations = useSelector((state) => Object.values(state.reservation))
 
     const state = useSelector(state => state.session)
-    let userId = state.user.id
 
     const [showModal, setShowModal] = useState(true);
 
@@ -36,30 +36,32 @@ function ConfirmReservation() {
             </>
         );
     }
-
+    // console.log('===========>', reservations)
     async function handleDeleteSubmit(id) {
         await dispatch(deleteReservation(id))
         await dispatch(GetReservations())
     }
 
+    let userId = state.user.id
 
     return (
         <>
             <div className="reservation_div">
-                <h2>Your  Reservations </h2>
+                <h2 className='reservation_title'>Your  Reservations </h2>
                 <div>
                     {reservations.map((reservation) => (
 
                         userId === reservation.user_id ? (
 
-                            <>
-                                <div><Link to={`/api/docks/${reservation.Dock.id}`}>{reservation.Dock.dock_name}</Link></div>
+                            <div className="reservation_card">
+                                <div className="reservation_name"><Link to={`/api/docks/${reservation.dock_id}`}>{reservation.Dock.dock_name}</Link></div>
                                 <div>Arriving on {reservation.start_date.slice(0, 10)}</div>
                                 <div>Departing on {reservation.end_date.slice(0, 10)}</div>
-                                <button onClick={() => handleDeleteSubmit(reservation.id)}>Delete</button>
-                                <EditReservationModal reservation={reservation} />
-
-                            </>
+                                <div className="button_container">
+                                    <button className="resBtn" onClick={() => handleDeleteSubmit(reservation.id)}>Delete</button>
+                                    <EditReservationModal reservation={reservation} />
+                                </div>
+                            </div>
                         ) : <></>
 
 
