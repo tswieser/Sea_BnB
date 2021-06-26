@@ -13,17 +13,13 @@ ul {
     top:2em;
 }
 
-#reservations_link{
-    text-decoration: none;
-}
-
 .profile_btn{
     position: absolute;
 margin-left:20px;
 background-color:white;
 border-radius: 8px;
 border:1px solid lightgrey;
-box-shadow: 0 20px 48px rgb(0 0 0 / 40%);
+box-shadow: 0 20px 48px rgb(0 0 0 / 20%);
 /* padding:12px; */
 height:40px;
 width:40px;

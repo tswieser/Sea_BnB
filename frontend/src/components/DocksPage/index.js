@@ -41,10 +41,11 @@ const DockPage = () => {
                         src={dock.Images[0].url}
                     ></img>
                     <div className="dock_info">
+                        <div className="dock_location">Private Dock Located </div>
                         <div className="dock_address">{dock.address}</div>
                         <div className="dock_city">{dock.city}</div>
                         <div className="dock_state">{dock.state}</div>
-                        <div className="dock_rating">{avgRating(dock.Reviews)}  <i className="fas fa-star"></i></div>
+                        <div className="dock_rating"><i className="fas fa-star">{avgRating(dock.Reviews)}</i></div>
 
 
                     </div>
