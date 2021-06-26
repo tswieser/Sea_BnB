@@ -62,7 +62,7 @@ const ReservationPage = () => {
         // history.push('/api/docks')
 
         const stayInfo = await dispatch(AddReservation(reservation))
-        // await dispatch(GetReservations())
+        await dispatch(GetReservations())
 
         if (stayInfo) {
             history.push('/api/reservation')
