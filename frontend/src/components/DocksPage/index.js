@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getDocks } from '../../store/dock';
+import MapContainer from '../MapContainer'
 import './DocksPage.css'
+
 
 export function avgRating(numArr) {
     if (numArr.length > 0) {
@@ -29,6 +31,9 @@ const DockPage = () => {
 
     return (
         <div className="docks_container">
+            <div className='mapContainer'>
+                <MapContainer />
+            </div>
             {docks.map((dock) => (
                 <div className='dock_listings'>
 
@@ -69,5 +74,6 @@ const DockPage = () => {
 
 
 }
+
 
 export default DockPage;

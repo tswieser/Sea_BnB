@@ -1,7 +1,7 @@
 .dock_title{
     text-decoration: none;
     color:black;
-    margin: 0 0 0 30em;
+    margin: 0 0 0 18em;
 
 }
 
@@ -15,6 +15,8 @@
     margin:5em;
     padding:20px;
     padding-bottom: 40px;
+    width: 900px;
+    height:300px;
 }
 
 .dock_image{
@@ -53,7 +55,7 @@ i{
     width: 200px;
     transition:background-color;
     /* float:right; */
-    right:13em;
+    right:70em;
 
 
 }
@@ -70,4 +72,11 @@ i{
 .dock_location{
     color: gray;
 
+}
+
+.mapContainer{
+    position: absolute;
+    right:20px;
+    height:900px;
+    width:800px;
 }
