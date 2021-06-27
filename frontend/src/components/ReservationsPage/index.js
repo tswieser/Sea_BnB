@@ -116,7 +116,7 @@ const ReservationPage = () => {
         if (user_id === id) {
             return (
                 <>
-                    <button className="submit_btn" onClick={() => handleDeleteSubmit(reviewId)}>Delete</button>
+                    <button className="review_btn" onClick={() => handleDeleteSubmit(reviewId)}>Delete</button>
                     <EditFormModal reviewId={reviewId} user_id={user_id} dock_id={dock_id} />
                 </>
             )
@@ -218,21 +218,21 @@ const ReservationPage = () => {
                 <div className="reviews_container">
 
                     <h2 className="title">Reviews</h2>
-                    <div className="review_card">
                         {dock.Reviews.map((title) => (
+                    <div className="review_card">
                             <div>
                                 <div className="review_header">
                                     <p>{title.review}</p>
                                     <p><i className="fas fa-star"></i> {title.rating} </p>
                                 </div>
 
-                                <div className="review_header">
+                                <div className="review_buttons">
                                     {checkButtons(title.user_id, title.id)}
                                 </div>
                             </div>
 
-                        ))}
                     </div>
+                        ))}
                     <div className="review">
                         <form onSubmit={handleReviewSubmit}>
                             <div className="review_header">
@@ -253,7 +253,7 @@ const ReservationPage = () => {
                                     </label>
                                 </div>
                             </div>
-                            <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='110' placeholder="Yo itd be dope af if youd drop a review and smash dat submit btn"></textarea>
+                            <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='111' placeholder="Yo itd be dope af if youd drop a review and smash dat submit btn"></textarea>
 
                             <button type="submit" className="submit_btn" >Submit Review </button>
                         </form>
