@@ -16,6 +16,7 @@
     height:80%;
     width:45%;
     overflow:hidden;
+    z-index:-1;
 }
 
 
@@ -59,7 +60,7 @@ i{
 }
 
 .dock_rate{
-    margin-top:70px;
+    margin-top:60px;
     vertical-align: baseline;
 }
 
