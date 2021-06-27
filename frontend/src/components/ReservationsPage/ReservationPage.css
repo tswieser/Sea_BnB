@@ -2,9 +2,10 @@
     /* display:flex; */
     /* position: absolute; */
 
-    background-color:white;
+
     width:400px;
-    height:200px;
+    height:150px;
+    border: 1px darkgray;
     border-radius: 8px;
     box-shadow: 0 20px 48px rgb(0 0 0 / 15%);
     padding: 10px;
@@ -16,7 +17,7 @@
 .main-container{
     font-weight: 400;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
+    padding: 0 5rem 0 5rem;
 }
 .title{
     font-size: 25px !important;
@@ -27,17 +28,54 @@
     display: flex;
     color: gray;
     margin-bottom: 25px;
+}
+.img_container{
+    display:grid;
+    grid-template-columns: 50% 25% 25%;
+    grid-gap:8px;
+    padding: 10px 0px;
+    column-gap: 8px;
 
 
 }
+.main_img{
+    grid-row: 1 / span 2;
+    max-height: 350px;
 
+    overflow: hidden;
+    border-radius: 15px;
+}
+.support_imgs{
+    max-height: 170px;
+    border-radius: 15px;
+}
+img{
+    width: 100%;
+    height: 100%;
+    display:block;
+}
+.detailsContainer{
+    display: flex;
+    width: 800px;
+}
+.rightSide{
+    display: block;
+}
+.leftSide{
+    margin: 50px 0 0 50px;
+}
+.user_title{
+    border-bottom: 1px solid lightgray;
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
 .submit_btn{
     background-color: #E04562;
     color:white;
     border-radius:5px;
     border:1px solid lightgrey;
     padding: 0.5em;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
     font-weight: 600;
     width: 200px;
     transition:background-color;
@@ -46,7 +84,73 @@
 
 
 }
-
+.home, .cancellation{
+    display: flex;
+    padding: 10px 0px;
+    margin-right: 5px;
+}
+.subTitle{
+    font-size:15px;
+    margin: 0 5px;
+}
+.subDesc{
+    font-size:13px;
+    margin: 0 5px;
+}
+.description{
+    width:800px;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+}
+.calender_input{
+    color: gray;
+    align-items: center;
+    margin:3px;
+    border-radius: 3px;
+    padding: 10px;
+    border-color: lightgray;
+}
+.header{
+    display: flex;
+    justify-content:space-between;
+    padding: 30px 0;
+}
+.dock_rating{
+    margin-top:0;
+}
 .submit_btn:hover{
     background-color:#b83049
+}
+.submit_btn{
+    display: flex;
+    width:100%;
+    border-radius: 3px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    margin: 20px 0 !important;
+}
+.review{
+    display: flex;
+
+}
+.littleTit{
+    font-size: 20px;
+    font-weight: 400;
+    padding: 5px 0 10px 0;
+}
+.review_header{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+}
+.reviews_container{
+    width: 800px;
+}
+.review_card{
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 15%);
 }

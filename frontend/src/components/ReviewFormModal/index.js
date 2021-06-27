@@ -10,7 +10,7 @@ function EditFormModal({ reviewId, user_id, dock_id }) {
 
     return (
         <>
-            <button className="edit_btn" onClick={() => setShowModal(true)}>Edit</button>
+            <button className="submit_btn" onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <ReviewEdit setShowModal={setShowModal} reviewId={reviewId} user_id={user_id} dock_id={dock_id} />
