@@ -116,7 +116,7 @@ const ReservationPage = () => {
         if (user_id === id) {
             return (
                 <>
-                    <button onClick={() => handleDeleteSubmit(reviewId)}>Delete</button>
+                    <button className="submit_btn" onClick={() => handleDeleteSubmit(reviewId)}>Delete</button>
                     <EditFormModal reviewId={reviewId} user_id={user_id} dock_id={dock_id} />
                 </>
             )
@@ -140,65 +140,125 @@ const ReservationPage = () => {
                 </div>
 
                 <div className="img_container">
-                    {dock.Images.map((dock) => (
+
+                    <img
+                        className="main_img"
+                        src={dock.Images[1].url}
+                    ></img>
+
+                    {dock.Images.slice(1).map((dock) => (
                         <img
-                            className="dock_image"
+                            className="support_imgs"
                             src={dock.url}
                         ></img>
                     ))}
-                </div>
-                <div className="user_title">
-                    <p>Private Dock Hosted by {dock.User.username}</p>
-                </div>
 
-                <div className="reservation_form">
-                    <div>${dock.price}/ Night</div>
-                    <div className="dock_rating"><i className="fas fa-star"></i> {avgRating(dock.Reviews)}   ({dock.Reviews.length} reviews)</div>
-                    <DatePicker
-                        dateFormat="yyyy/MM/dd"
-                        placeholderText="Check In"
-                        selected={checkIn}
-                        onChange={(date) => setCheckIn(date)}
-                    />
+                </div>
+                <div className="detailsContainer">
+                    <div className="rightSide">
+                        <div className="user_title">
+                            <p>Private Dock Hosted by {dock.User.username}</p>
+                        </div>
+                        <div className="home">
+                            <div>
+                                <i class="fas fa-home" id="sicons" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <p className="subTitle">Entire Home</p>
+                                <p className="subDesc">You got dat hole shiz to yall self</p>
+                            </div>
+                        </div>
+                        <div className="cancellation">
+                            <div>
+                                <i class="far fa-calendar-check" id="sicons" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <p className="subTitle">Cancellation policy</p>
+                                <p className="subDesc">If you cancel your stay your children will be cursed to die a cruel and lonely death</p>
+                            </div>
+                        </div>
+                        <div className="description">
+                            <p>Lorem ipsum dolor sit amet, ex salutandi concludaturque mea, suas viderer ea ius. In sea idque corrumpit.
+                                Eam autem causae dolorum et, malorum ocurreret no his. Paulo abhorreant ex nec, ei qui veritus imperdiet conceptam.
+                                Postea hendrerit pertinacia sit an, menandri dissentias an usu. Ius detraxit eleifend disputationi cu, assum nusquam cu per,
+                                id mollis postulant pertinacia nec. Ius ex odio eros saepe. Quando efficiendi id vix, ad wisi albucius nec,
+                                at sed modus utroque detracto. An patrioque efficiendi usu, at novum timeam cum.</p>
+                        </div>
+                    </div>
+                    <div className="leftSide">
+                        <div className="reservation_form">
+                            <div className="header">
+                                <div>${dock.price}/ Night</div>
+                                <div className="dock_rating">
+                                    <i className="fas fa-star"></i>
+                                    {avgRating(dock.Reviews)}
+                                    ({dock.Reviews.length} reviews)
+                                </div>
+                            </div>
+                            <DatePicker
+                                className="calender_input"
+                                dateFormat="yyyy/MM/dd"
+                                placeholderText="Check In"
+                                selected={checkIn}
+                                onChange={(date) => setCheckIn(date)}
+                            />
 
-                    <DatePicker
-                        dateFormat="yyyy-MM-dd"
-                        placeholderText="Check Out"
-                        selected={checkOut}
-                        onChange={(date) => setCheckOut(date)}
-                    />
-                    <button type="button" className="submit_btn" onClick={handleReservationSubmit}>Book Dock</button>
+                            <DatePicker
+                                className="calender_input"
+                                dateFormat="yyyy-MM-dd"
+                                placeholderText="Check Out"
+                                selected={checkOut}
+                                onChange={(date) => setCheckOut(date)}
+                            />
+
+                            <button type="button" className="submit_btn" onClick={handleReservationSubmit}>Book Dock</button>
+                        </div>
+                    </div>
                 </div>
                 <div className="reviews_container">
-                    <h2>Reviews</h2>
-                    {dock.Reviews.map((title) => (
-                        < div >
-                            <p>{title.review}</p>
-                            <p><i className="fas fa-star"></i> {title.rating} </p>
-                            {checkButtons(title.user_id, title.id)}
+
+                    <h2 className="title">Reviews</h2>
+                    <div className="review_card">
+                        {dock.Reviews.map((title) => (
+                            <div>
+                                <div className="review_header">
+                                    <p>{title.review}</p>
+                                    <p><i className="fas fa-star"></i> {title.rating} </p>
+                                </div>
+
+                                <div className="review_header">
+                                    {checkButtons(title.user_id, title.id)}
+                                </div>
+                            </div>
+
+                        ))}
+                    </div>
+                    <div className="review">
+                        <form onSubmit={handleReviewSubmit}>
+                            <div className="review_header">
+                                <h2 className="littleTit">Leave a Review </h2>
 
 
-                        </div>
-                    ))}
-                    <form onSubmit={handleReviewSubmit}>
-                        <label>
-                            <ReactStars
-                                count={5}
-                                onChange={setRating}
-                                size={45}
-                                isHalf={false}
-                                emptyIcon={<i className="far fa-star"></i>}
-                                fullIcon={<i className="fas fa-star"></i>}
-                                activeColor='#E04562'
-                            />
-                        </label>
-                        <h2> Leave a Review </h2>
-                        <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='50' placeholder="Leave Your Review Here"></textarea>
+                                <div className="stars">
+                                    <label>
+                                        <ReactStars
+                                            count={5}
+                                            onChange={setRating}
+                                            size={45}
+                                            isHalf={false}
+                                            emptyIcon={<i className="far fa-star"></i>}
+                                            fullIcon={<i className="fas fa-star"></i>}
+                                            activeColor='#E04562'
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+                            <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='110' placeholder="Yo itd be dope af if youd drop a review and smash dat submit btn"></textarea>
 
-                        <button type="submit" className="submit_btn" >Submit Review </button>
-                    </form>
+                            <button type="submit" className="submit_btn" >Submit Review </button>
+                        </form>
 
-
+                    </div>
                 </div>
 
             </div >)
