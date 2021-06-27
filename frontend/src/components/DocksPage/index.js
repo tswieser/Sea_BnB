@@ -31,40 +31,49 @@ const DockPage = () => {
 
     return (
         <div className="docks_container">
+            <div className="dockaroos">
+                <div className="listings">
+                    {docks.map((dock) => (
+                        <div className='dock_listings'>
+
+                            <Link className="dock_title" key={dock.id} to={`/api/docks/${dock.id}`}>
+                                <h2 className="dock_title">{dock.dock_name}</h2>
+                            </Link>
+                            <div className="dock_content">
+                                <img
+                                    className="dock_image"
+                                    src={dock.Images[0].url}
+                                ></img>
+                                <div className="dock_info">
+                                    <div className="dock_location">Private Dock Located at </div>
+                                    <div className="dock_address">{dock.address}</div>
+                                    <div className="dock_city">{dock.city}</div>
+                                    <div className="dock_state">{dock.state}</div>
+                                    <div className="dock_rate"><i className="fas fa-star">&nbsp;{avgRating(dock.Reviews)}</i></div>
+
+
+                                </div>
+                            </div>
+                            <div className="dock_footer">
+                                <div className="dock_price">
+                                    ${dock.price} /Night
+                                </div>
+                                <div>
+                                    <Link to={`/api/docks/${dock.id}`}>
+                                        <button className="reserve_btn">Reserve Now</button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    ))}
+                </div>
+            </div>
             <div className='mapContainer'>
                 <MapContainer />
             </div>
-            {docks.map((dock) => (
-                <div className='dock_listings'>
-
-                    <Link className="dock_title" key={dock.id} to={`/api/docks/${dock.id}`}>
-                        <h2 className="dock_title">{dock.dock_name}</h2>
-                    </Link>
-
-                    <img
-                        className="dock_image"
-                        src={dock.Images[0].url}
-                    ></img>
-                    <div className="dock_info">
-                        <div className="dock_location">Private Dock Located at </div>
-                        <div className="dock_address">{dock.address}</div>
-                        <div className="dock_city">{dock.city}</div>
-                        <div className="dock_state">{dock.state}</div>
-                        <div className="dock_rating"><i className="fas fa-star">{avgRating(dock.Reviews)}</i></div>
-
-
-                    </div>
-                    <div className="dock_price">${dock.price} /Night
-                        <Link to={`/api/docks/${dock.id}`}>
-                            <button className="reserve_btn">Reserve Now</button>
-                        </Link>
-                    </div>
-                </div>
-
-            ))}
-
-
-        </div>
+        </div >
 
 
     )

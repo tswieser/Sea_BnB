@@ -1,50 +1,69 @@
 .dock_title{
     text-decoration: none;
     color:black;
-    margin: 0 0 0 18em;
-
+    margin: 0 0 1em 18em ;
 }
 
+.docks_container{
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0 3em 0 3em;
+    display:flex;
+}
+.mapContainer{
+    position:fixed;
+    right:0;
+    height:80%;
+    width:45%;
+    overflow:hidden;
+}
 
 
 .dock_listings{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    margin-top:10px;
     box-shadow: 0 20px 48px rgb(0 0 0 / 35%);
     border-radius: 8px;
-    margin:5em;
-    padding:20px;
-    padding-bottom: 40px;
-    width: 900px;
-    height:300px;
-}
+    margin:3em;
+    height:360px;
+    width:85%;
 
+}
+.listings{
+    width:100%;
+}
+.dockaroos{
+    position:relative;
+    overflow: hidden;
+    width: 55%;
+}
 .dock_image{
     box-shadow: 0 20px 48px rgb(0 0 0 / 15%);
    height:200px;
    width:350px;
    border-radius: 8px;
-}
+   margin: 0 1em;
 
+}
+.dock_content{
+    display:flex;
+}
 i{
     color:#E04562;
 }
 
 .dock_info{
-    margin-top: 2em;
-    display:inline-block;
+
     padding: 25px;
     flex-direction:column;
-    vertical-align:top;
+
 }
 
-.dock_rating{
-    margin-top:35px;
+.dock_rate{
+    margin-top:70px;
     vertical-align: baseline;
 }
 
 .reserve_btn{
-    position: absolute;
     background-color: #E04562;
     color:white;
     border-radius:5px;
@@ -64,19 +83,17 @@ i{
     background-color:#b83049
 }
 
-.dock_price{
-    margin-left: 100px;
+.dock_footer{
+    display:flex;
+    justify-content:space-between;
     font-weight: bold;
+    margin:0 1em 15px 1em;
 }
 
 .dock_location{
     color: gray;
 
 }
-
-.mapContainer{
-    position: absolute;
-    right:20px;
-    height:900px;
-    width:800px;
+.dock_location, .dock_address, .dock_city, .dock_state {
+    margin-bottom: 5px;
 }
