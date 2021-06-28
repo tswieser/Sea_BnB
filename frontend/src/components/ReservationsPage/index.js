@@ -161,11 +161,11 @@ const ReservationPage = () => {
                         </div>
                         <div className="home">
                             <div>
-                                <i class="fas fa-home" id="sicons" aria-hidden="true"></i>
+                                <i class="fas fa-ship" id="sicons" aria-hidden="true"></i>
                             </div>
                             <div>
-                                <p className="subTitle">Entire Home</p>
-                                <p className="subDesc">You got dat hole shiz to yall self</p>
+                                <p className="subTitle">Entire Slip</p>
+                                <p className="subDesc">Enjoy the entire dock or slip to your self with included water and electrical hook ups available </p>
                             </div>
                         </div>
                         <div className="cancellation">
@@ -174,7 +174,7 @@ const ReservationPage = () => {
                             </div>
                             <div>
                                 <p className="subTitle">Cancellation policy</p>
-                                <p className="subDesc">If you cancel your stay your children will be cursed to die a cruel and lonely death</p>
+                                <p className="subDesc">If you wish to cancel your reservation please visit the reservations page for more details</p>
                             </div>
                         </div>
                         <div className="description">
@@ -253,7 +253,7 @@ const ReservationPage = () => {
                                     </label>
                                 </div>
                             </div>
-                            <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='111' placeholder="Yo itd be dope af if youd drop a review and smash dat submit btn"></textarea>
+                            <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='111' placeholder="Submit Review"></textarea>
 
                             <button type="submit" className="submit_btn" >Submit Review </button>
                         </form>
