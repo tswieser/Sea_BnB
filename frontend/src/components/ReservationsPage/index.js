@@ -253,7 +253,7 @@ const ReservationPage = () => {
                                     </label>
                                 </div>
                             </div>
-                            <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='111' placeholder="Submit Review"></textarea>
+                            <textarea onKeyUp={(e) => setReview(e.target.value)} rows="10" cols='111' placeholder="Write a review"></textarea>
 
                             <button type="submit" className="submit_btn" >Submit Review </button>
                         </form>
