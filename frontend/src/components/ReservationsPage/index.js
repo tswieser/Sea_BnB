@@ -169,8 +169,8 @@ const ReservationPage = () => {
                                 <i class="fas fa-home" id="sicons" aria-hidden="true"></i>
                             </div>
                             <div>
-                                <p className="subTitle">Entire Home</p>
-                                <p className="subDesc">You got dat hole shiz to yall self</p>
+                                <p className="subTitle">Entire Slip</p>
+                                <p className="subDesc">One Boat per slip, providing maximum amount of privacy.</p>
                             </div>
                         </div>
                         <div className="cancellation">
@@ -179,7 +179,7 @@ const ReservationPage = () => {
                             </div>
                             <div>
                                 <p className="subTitle">Cancellation policy</p>
-                                <p className="subDesc">If you cancel your stay your children will be cursed to die a cruel and lonely death</p>
+                                <p className="subDesc">Cancellation and refund possible up to 24 hours before dock reservation </p>
                             </div>
                         </div>
                         <div className="description">
