@@ -34,3 +34,17 @@ background-size: 100% 80%;
 .pic_btn:hover{
 background-color: rgb(201, 201, 200);
 }
+
+.social_links{
+display:flex;
+justify-content: center;
+margin-top:-80px;
+}
+
+.gitHub{
+    margin-right:45px;
+}
+
+.gitHub_icon , .linkedIn_icon {
+font-size:30px;
+}
