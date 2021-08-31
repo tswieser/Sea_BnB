@@ -31,6 +31,7 @@ const ReservationPage = () => {
     const [showModal, setShowModal] = useState(true);
     const [rating, setRating] = useState(null)
     const [review, setReview] = useState('')
+    const [errors, setErrors] = useState()
     const [dateRange, setDateRange] = useState([null, null]);
     const [checkIn, checkOut] = dateRange;
 
@@ -45,9 +46,14 @@ const ReservationPage = () => {
     }, [review])
 
     const handleReservationSubmit = async (e) => {
+        e.preventDefault();
         let user_id = state.user.id
 
-        e.preventDefault();
+        if (!checkIn || !checkOut) {
+            setErrors('Please Enter a valid Date')
+            return;
+        }
+
         let start_date = format(checkIn, 'yyyy-MM-dd')
         let end_date = format(checkOut, 'yyyy-MM-dd')
         let dock_id = dockId
@@ -193,6 +199,9 @@ const ReservationPage = () => {
                                     {avgRating(dock.Reviews)}
                                     ({dock.Reviews.length} reviews)
                                 </div>
+                            </div>
+                            <div className="res_errors">
+                                {errors ? errors : null}
                             </div>
                             <DatePicker
                                 minDate={new Date()}

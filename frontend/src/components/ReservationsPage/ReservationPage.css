@@ -172,3 +172,9 @@ height: 40px;
     width:75px;
     margin: 0 3px;
 }
+
+.res_errors{
+ color:red;
+ margin-left: 7em;
+ margin-bottom: 10px;
+}
