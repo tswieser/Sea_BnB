@@ -111,6 +111,9 @@ height: 40px;
     border-radius: 3px;
     padding: 10px;
     border-color: lightgray;
+    width: 240px;
+    margin-left: 5em;
+    margin-bottom: 1em;
 }
 .header{
     display: flex;

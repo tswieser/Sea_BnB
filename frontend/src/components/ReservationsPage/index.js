@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import {  useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import {  getDocks } from '../../store/dock';
+import { getDocks } from '../../store/dock';
 import { AddReservation } from '../../store/reservations';
-import  { AddReview, GetReviews, deleteReview } from '../../store/reviews';
+import { AddReview, GetReviews, deleteReview } from '../../store/reviews';
 import ReactStars from "react-rating-stars-component";
 import { avgRating } from '../DocksPage'
 import './ReservationPage.css'
@@ -29,20 +29,19 @@ const ReservationPage = () => {
 
 
     const [showModal, setShowModal] = useState(true);
-    const [checkIn, setCheckIn] = useState(new Date());
-    const [checkOut, setCheckOut] = useState(new Date());
     const [rating, setRating] = useState(null)
     const [review, setReview] = useState('')
-
+    const [dateRange, setDateRange] = useState([null, null]);
+    const [checkIn, checkOut] = dateRange;
 
 
     useEffect(async () => {
         await dispatch(getDocks());
-        // await dispatch(GetReviews())
+
     }, [dispatch, reviews])
 
     useEffect(() => {
-        // console.log(review)
+
     }, [review])
 
     const handleReservationSubmit = async (e) => {
@@ -196,21 +195,19 @@ const ReservationPage = () => {
                                 </div>
                             </div>
                             <DatePicker
+                                minDate={new Date()}
                                 className="calender_input"
                                 dateFormat="yyyy/MM/dd"
-                                placeholderText="Check In"
+                                selectsRange={true}
+                                placeholderText="Select Date Range"
+                                startDate={checkIn}
+                                endDate={checkOut}
                                 selected={checkIn}
-                                onChange={(date) => setCheckIn(date)}
+                                onChange={(update) => {
+                                    setDateRange(update);
+                                }}
+                                isClearable={true}
                             />
-
-                            <DatePicker
-                                className="calender_input"
-                                dateFormat="yyyy-MM-dd"
-                                placeholderText="Check Out"
-                                selected={checkOut}
-                                onChange={(date) => setCheckOut(date)}
-                            />
-
                             <button type="button" className="submit_btn" onClick={handleReservationSubmit}>Book Dock</button>
                         </div>
                     </div>
@@ -218,8 +215,8 @@ const ReservationPage = () => {
                 <div className="reviews_container">
 
                     <h2 className="title">Reviews</h2>
-                        {dock.Reviews.map((title) => (
-                    <div className="review_card">
+                    {dock.Reviews.map((title) => (
+                        <div className="review_card">
                             <div>
                                 <div className="review_header">
                                     <p>{title.review}</p>
@@ -231,8 +228,8 @@ const ReservationPage = () => {
                                 </div>
                             </div>
 
-                    </div>
-                        ))}
+                        </div>
+                    ))}
                     <div className="review">
                         <form onSubmit={handleReviewSubmit}>
                             <div className="review_header">
