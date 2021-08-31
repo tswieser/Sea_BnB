@@ -71,9 +71,9 @@ const DockPage = () => {
                     ))}
                 </div>
             </div>
-            <div className='mapContainer'>
+            {/* <div className='mapContainer'> */}
                 <MapContainer />
-            </div>
+            {/* </div> */}
         </div >
 
 
