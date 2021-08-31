@@ -41,6 +41,7 @@ const DockPage = () => {
                             </Link>
                             <div className="dock_content">
                                 <img
+                                    alt=""
                                     className="dock_image"
                                     src={dock.Images[0].url}
                                 ></img>

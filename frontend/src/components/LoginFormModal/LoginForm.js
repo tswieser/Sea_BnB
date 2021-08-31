@@ -20,40 +20,55 @@ function LoginForm() {
         );
     };
 
+    const handleDemo = (e) => {
+        e.preventDefault();
+        const demoUser = {
+            credential: "demo",
+            password: "password"
+        }
+        return dispatch(sessionActions.login(demoUser))
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
+        <div>
             <ul>
                 {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}
             </ul>
-            <div className="form_contents">
-                <h2 className="form_title">Log In</h2>
-                <label className="form_label" >
-                    Username or Email
-                </label>
-                <input
-                    className='form_input'
-                    type="text"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
-                    required
-                />
+            <form onSubmit={handleSubmit}>
 
-                <label className="form_label">
-                    Password
-                </label>
-                <input
-                    className='form_input'
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
+                <div className="form_contents">
+                    <h2 className="form_title">Log In</h2>
+                    <label className="form_label" >
+                        Username or Email
+                    </label>
+                    <input
+                        className='form_input'
+                        type="text"
+                        value={credential}
+                        onChange={(e) => setCredential(e.target.value)}
+                        required
+                    />
 
-                <button className="form_btn" stype="submit">Log In</button>
-            </div>
-        </form>
+                    <label className="form_label">
+                        Password
+                    </label>
+                    <input
+                        className='form_input'
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+
+                    <button className="form_btn" stype="submit">Log In</button>
+                </div>
+            </form>
+            <form onSubmit={handleDemo}>
+                <button className="form_btn" stype="submit">Demo User</button>
+            </form>
+        </div>
     );
 }
 

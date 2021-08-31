@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import {  useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getSingularDock, getDocks } from '../../store/dock';
+import {  getDocks } from '../../store/dock';
 import { AddReservation } from '../../store/reservations';
-import reviewReducer, { AddReview, GetReviews, deleteReview } from '../../store/reviews';
+import  { AddReview, GetReviews, deleteReview } from '../../store/reviews';
 import ReactStars from "react-rating-stars-component";
 import { avgRating } from '../DocksPage'
 import './ReservationPage.css'

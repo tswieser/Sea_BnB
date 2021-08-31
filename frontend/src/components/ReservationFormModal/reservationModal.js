@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { format } from "date-fns";
 import { updateReservation, GetReservations } from '../../store/reservations'
-import { useHistory } from 'react-router-dom';
 import './reservationModal.css'
 
 
@@ -11,7 +10,7 @@ function ReservationEdit({ reservation, setShowModal }) {
     const state = useSelector(state => state.session)
 
     const dispatch = useDispatch()
-    const history = useHistory();
+
 
     const [checkIn, setCheckIn] = useState(new Date());
     const [checkOut, setCheckOut] = useState(new Date());
