@@ -22,8 +22,6 @@ function ConfirmReservation() {
 
     }, [dispatch])
 
-
-    console.log(reservations)
     if (!state.user) {
         return (
             <>
@@ -35,7 +33,7 @@ function ConfirmReservation() {
             </>
         );
     }
-    // console.log('===========>', reservations)
+
     async function handleDeleteSubmit(id) {
         await dispatch(deleteReservation(id))
         await dispatch(GetReservations())
